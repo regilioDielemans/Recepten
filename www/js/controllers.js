@@ -14,7 +14,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
 })
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -53,8 +53,12 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
       $scope.closeLogin();
     }, 1000);
 
-    console.log($scope.loginData)
+        $http.post("http://rr-websites.nl/testmap/webapp/index.php", {'test' : 'hallo'}).success(function(data, status) {
+            $scope.hello = data;
+            console.log('hallo');
+        })
   };
+
 })
 
 
@@ -62,19 +66,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
 
  $scope.SignUp = function() {
 
- $http.post('http://rr-websites.nl/testmap/webapp/index.php',{'h':$scope.h, 's':$scope.s} ).success(function(data, status, headers, config) {
 
-    if (data.msg != '')
-       {
-         $scope.msgs.push(data.msg);
-       }
-    else
-       {
-         $scope.errors.push(data.error);
-       }
-      }).error(function(data, status) {
-         $scope.errors.push(status);
-       });
 }
 
 })
