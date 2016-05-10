@@ -60,9 +60,20 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
 
- $scope.SignUp = function() {
+    $scope.submit = function(){
+        var uname = $scope.username;
+        var password = $scope.password;
 
- $http.post('http://rr-websites.nl/testmap/webapp/index.php',{'h':$scope.h, 's':$scope.s} ).success(function(data, status, headers, config) {
+        if($scope.username == 'admin' && $scope.password == 'admin'){
+            $location.path('/dashboard');
+        }
+    }
+
+/* $scope.SignUp = function() {
+
+ $http.post('http://rr-websites.nl/testmap/webapp/index.php',
+ {'h':$scope.h, 's':$scope.s}
+ ).success(function(data, status, headers, config) {
 
     if (data.msg != '')
        {
@@ -75,7 +86,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
       }).error(function(data, status) {
          $scope.errors.push(status);
        });
-}
+}*/
 
 })
 
@@ -86,7 +97,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
     $scope.recepten = response.data;
   });
 
-test
+
 })
 
 .controller('ReceptCtrl', function($scope, $http ,$location) {
