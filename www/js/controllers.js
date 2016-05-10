@@ -86,7 +86,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
     $scope.recepten = response.data;
   });
 
-
+test
 })
 
 .controller('ReceptCtrl', function($scope, $http ,$location) {
