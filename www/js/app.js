@@ -35,6 +35,14 @@ angular.module('starter', ['ionic', 'app_vermist'])
     controller: 'AppCtrl'
   })
 
+
+.state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+  })
+
+
   .state('app.search', {
     url: '/search',
     views: {
@@ -85,4 +93,5 @@ angular.module('starter', ['ionic', 'app_vermist'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/recepten');
+
 });

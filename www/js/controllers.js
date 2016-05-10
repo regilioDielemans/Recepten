@@ -52,9 +52,32 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
+
+    console.log($scope.loginData)
   };
 })
 
+
+.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+
+ $scope.SignUp = function() {
+
+ $http.post('http://rr-websites.nl/testmap/webapp/index.php',{'h':$scope.h, 's':$scope.s} ).success(function(data, status, headers, config) {
+
+    if (data.msg != '')
+       {
+         $scope.msgs.push(data.msg);
+       }
+    else
+       {
+         $scope.errors.push(data.error);
+       }
+      }).error(function(data, status) {
+         $scope.errors.push(status);
+       });
+}
+
+})
 
 
 .controller('ReceptenCtrl', function($scope, $http) {
@@ -77,8 +100,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
 
 })
 
-.controller('LoginCtrl', function($scope, $http, $email, $wachtwoord){
-})
+
 
 .controller('FormCtrl', function($scope, $http){
 
