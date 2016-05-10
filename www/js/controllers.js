@@ -53,10 +53,15 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
       $scope.closeLogin();
     }, 1000);
 
-        $http.post("http://rr-websites.nl/testmap/webapp/index.php", {'test' : 'hallo'}).success(function(data, status) {
-            $scope.hello = data;
-            console.log('hallo');
-        })
+    // $http.get("http://rr-websites.nl/testmap/webapp/index.php").success(function(data, status) {
+    //   console.log(data);
+    // });
+
+        $http.post("http://rr-websites.nl/testmap/webapp/index.php", $scope.LoginData).success(function(data, status) {
+            var hello = data;
+
+            console.log(hello);
+        });
   };
 
 })
