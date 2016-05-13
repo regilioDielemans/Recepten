@@ -45,7 +45,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
@@ -53,16 +53,42 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
       $scope.closeLogin();
     }, 1000);
 
-    // $http.get("http://rr-websites.nl/testmap/webapp/index.php").success(function(data, status) {
-    //   console.log(data);
-    // });
+    // console.log("Logindata", $scope.loginData);
+    $pass = "welkom123"
+var loginData = {
+    login: $scope.loginData,
+    pass: $pass
+}
 
-        $http.post("http://rr-websites.nl/testmap/webapp/index.php", $scope.LoginData).success(function(data, status) {
-            var hello = data;
+    $.ajax({
+        url: "http://rr-websites.nl/testmap/webapp/login.php",
+        type: "post",
+        data: loginData,
+        success: function (response) {
+           console.log(response)
 
-            console.log(hello);
-        });
-  };
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+
+    });
+
+    //   $http({
+    //         method: 'POST',
+    //         url: 'http://rr-websites.nl/testmap/webapp/login.php',
+    //         data: $scope.loginData
+    //     }).then(function successCallback(response) {
+    //         // this callback will be called asynchronously
+    //         // when the response is available
+    //         console.log(response);
+    //     }, function errorCallback(response) {
+    //         // called asynchronously if an error occurs
+    //         // or server returns response with an error status.
+    //         console.log(response);
+    //     });
+
+    };
 
 })
 
@@ -78,7 +104,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
 
 
 .controller('ReceptenCtrl', function($scope, $http) {
-  $http.get('http://rr-websites.nl/testmap/webapp/index.php').then(function(response){
+  $http.get('http://rr-websites.nl/testmap/webapp/recepten.php').then(function(response){
 
     $scope.recepten = response.data;
   });
@@ -89,7 +115,7 @@ var app_vermist = angular.module('app_vermist', ['ngRoute'])
 .controller('ReceptCtrl', function($scope, $http ,$location) {
   var path = $location.path();
   var split = path.split('/');
-  $http.get('http://rr-websites.nl/testmap/webapp/index.php?id=' + split[3]).then(function(response){
+  $http.get('http://rr-websites.nl/testmap/webapp/recepten.php?id=' + split[3]).then(function(response){
 
     $scope.recepten = response.data;
   });
