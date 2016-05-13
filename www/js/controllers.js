@@ -65,7 +65,16 @@ var loginData = {
         type: "post",
         data: loginData,
         success: function (response) {
-           console.log(response)
+
+          if(response['code'] == 200){
+                console.log(response['user']['gebruikerId'])
+                console.log(response['user']['naam'])
+                console.log(response['user']['email'])
+          }else{
+            console.log(response)
+       }
+
+
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -73,20 +82,6 @@ var loginData = {
         }
 
     });
-
-    //   $http({
-    //         method: 'POST',
-    //         url: 'http://rr-websites.nl/testmap/webapp/login.php',
-    //         data: $scope.loginData
-    //     }).then(function successCallback(response) {
-    //         // this callback will be called asynchronously
-    //         // when the response is available
-    //         console.log(response);
-    //     }, function errorCallback(response) {
-    //         // called asynchronously if an error occurs
-    //         // or server returns response with an error status.
-    //         console.log(response);
-    //     });
 
     };
 
