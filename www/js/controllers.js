@@ -68,6 +68,7 @@ var loginData = {
 
           if(response['code'] == 200){
                 console.log(response['user']['gebruikerId'])
+                localStorage.setItem("id", response['user']['gebruikerId'])
                 console.log(response['user']['naam'])
                 console.log(response['user']['email'])
           }else{
